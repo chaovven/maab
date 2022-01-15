@@ -1,0 +1,34 @@
+# two-agent bidding environment
+env: auction
+
+env_args:
+  limit: 100
+  n_agents: 2
+  n_actions: 20 # [0, 0.1, ..., 0.9, 1]
+  budget_ratio: 2
+  auction_type: GSP # first price, second price
+  obs_remain_budget: True
+  obs_timestep_left: True
+  obs_request_value: True
+  obs_last_win_rate: False
+  obs_instead_of_state: False
+  #  state_last_win_price: True
+  state_last_action: False
+  reward_death_value: 10  # TODO
+  reward_negative_scale: 0
+  reward_scale: True
+  reward_scale_rate: 20
+  value_dist: random # random, inverted
+  slot_price: 0.1
+  debug: False
+  # softmax temperature for reward assignment
+  coop: 0 # default setting temp=0, which is fully competitive
+  ratios: 0.5
+
+test_nepisode: 32
+test_interval: 10000
+log_interval: 10000
+runner_log_interval: 10000
+learner_log_interval: 10000
+ep_log_interval: 100000 # Log timestep stats across episode (not test stats) every {} timesteps
+t_max: 10000000

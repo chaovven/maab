@@ -1,0 +1,35 @@
+# offline dataset simulation
+env: auction_ali
+
+env_args:
+  train_src: 'data_20201118_member_id_train.csv'
+  test_src: 'data_20201118_member_id_test.csv'
+  limit: 96
+  minute_level: 0.5  # take every {} minuates as one timestep
+  n_agents: 3
+  n_actions: 21 # [0, 0.1, ..., 0.9, 1]
+  budget_ratio: 2
+  obs_remain_budget: True
+  obs_timestep_left: True
+  obs_last_win_rate: False
+  obs_instead_of_state: True # this is true in auction_ali
+  reward_death_value: 10  # TODO
+  reward_negative_scale: 0
+  reward_scale: True
+  reward_scale_rate: 20
+  value_dist: random # random, inverted
+  budget_mode: balance # balance, imbalance
+  debug: False
+  # softmax temperature for reward assignment
+  coop: 0 # default setting temp=0, which is fully competitive
+  ratios: [1, 1, 1]
+  marl: True
+  run_baseline: False
+
+test_nepisode: 5
+test_interval: 10000
+log_interval: 10000
+runner_log_interval: 10000
+learner_log_interval: 10000
+ep_log_interval: 100000 # Log timestep stats across episode (not test stats) every {} timesteps
+t_max: 10000000
